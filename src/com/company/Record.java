@@ -23,10 +23,22 @@ public class Record {
         return this.recs;
     }
 
-
-    //TODO:: Implement!
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+        boolean ans = true;
+       if(obj instanceof Record && ((Record) obj).recs.size() == this.recs.size()){
+           for(int i=0;i<this.recs.size();++i){
+               if(this.recs.get(i) == null || ((Record) obj).recs.get(i) == null)
+                   continue;
+               if (!this.recs.get(i).equals(((Record) obj).recs.get(i))) {
+                   ans = false;
+                   break;
+               }
+           }
+       }
+       else
+           ans = false;
+       return ans;
     }
+
 }

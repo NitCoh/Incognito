@@ -15,19 +15,20 @@ public class FreqSet {
     }
 
     public void put(Record rec){
-        if(!contains(rec)) {
+        Record toComp = contains(rec);
+        if(toComp == null) {
             freqSet.put(rec,1);
         }
         else{
-            freqSet.put(rec,freqSet.get(rec)+1);
+            freqSet.put(toComp,freqSet.get(toComp)+1);
         }
     }
 
-    public boolean contains(Record rec){
+    public Record contains(Record rec){
         for(Record cur : freqSet.keySet()){
             if(cur.equals(rec))
-                return true;
+                return cur;
         }
-        return false;
+        return null;
     }
 }

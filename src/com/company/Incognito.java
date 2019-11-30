@@ -14,7 +14,7 @@ public class Incognito {
     private List<Record> records;
     private int k;
 
-    public Incognito(String filename, List<Integer> idx,int numOfAttsExpected,int k){
+    public Incognito(String filename, List<Integer> idx,int numOfAttsExpected,int k, List<HashMap<String,String>> genFuncs){
         this.k=k;
         this.records = readRecordsFromCSV(filename,numOfAttsExpected);
         filterByIndex(this.records,idx);
@@ -23,7 +23,9 @@ public class Incognito {
             System.out.println(i+ " Age: "+rec.getRecs().get(0)+" Overall: "+rec.getRecs().get(1)+" Foot: "+rec.getRecs().get(2));
             ++i;
         }
+        System.out.println(buildFreqSet(genFuncs));
     }
+
 
     private static String[] listToArr(List<String> toExch){
         String[] toEx = new String[toExch.size()];
@@ -44,8 +46,10 @@ public class Incognito {
 
     public int buildFreqSet(List<HashMap<String,String>> genFuncs){
         FreqSet freqSet = new FreqSet();
+        int i=0;
         for(Record rec: this.records){
             Record genRec = new Record(applyGeneralization(listToArr(rec.getRecs()),genFuncs));
+            System.out.println((i++)+ " Age: "+genRec.getRecs().get(0)+" Overall: "+genRec.getRecs().get(1)+" Foot: "+genRec.getRecs().get(2));
             freqSet.put(genRec);
         }
         return freqSet.getMinVal();
