@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f84be33c-425f-48c3-9de4-bd1691be7ee9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/data.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/FreqSet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/Record.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IncognitoKAnon/com/company/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IncognitoKAnon/com/company/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Incognito.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Incognito.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -126,7 +119,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575031773329</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Implemented the reading from database (as csv).&#10;Implemented the FreqSet object.">
+      <created>1575051476618</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1575051476618</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -142,7 +142,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="h" />
-    <option name="LAST_COMMIT_MESSAGE" value="h" />
+    <MESSAGE value="Implemented the reading from database (as csv).&#10;Implemented the FreqSet object." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented the reading from database (as csv).&#10;Implemented the FreqSet object." />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
