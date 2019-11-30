@@ -1,14 +1,38 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Vertex {
     private final String data;
     private ArrayList<Edge> edges = new ArrayList<>();
     private boolean satisfies = false;
+    private boolean marked = false;
+    private Represantation[] nodes;
 
-    public Vertex(String data){
+    public Vertex(String data, Represantation[] arr){
         this.data = data;
+        this.nodes = arr;
+    }
+
+    public Represantation[] getNodes() {
+        return nodes;
+    }
+
+
+    public void markAndSatisfyNeighbours(){
+        for(Edge e: this.edges){
+            e.to.setMarked(true);
+            e.to.setSatisfies(true);
+        }
+    }
+
+    public List<Vertex> getDirectNeighbours(){
+        List<Vertex> neigh = new ArrayList<>();
+        for(Edge e: this.edges){
+            neigh.add(e.to);
+        }
+        return neigh;
     }
 
     public void addEdges(Edge edge){
@@ -17,11 +41,21 @@ public class Vertex {
         }
     }
 
+
     public void removeEdges(Edge edge){
         if(edges.contains(edge)){
             edges.remove(edge);
         }
     }
+
+    public boolean isMarked() {
+        return marked;
+    }
+
+    public void setMarked(boolean marked) {
+        this.marked = marked;
+    }
+
 
     public String getData(){
         return data;
@@ -48,13 +82,21 @@ public class Vertex {
     }
 
 
+    public static String[] getNames(Represantation[] arr){
+        String[] ans = new String[arr.length];
+        for(int i=0;i<arr.length;++i){
+            ans[i] = arr[i].getName();
+        }
+        return ans;
+    }
+
     public boolean equals(Object vertex){
         Vertex v = (Vertex) vertex;
         return data.hashCode() == v.data.hashCode();
     }
 
     public Vertex copy(){
-        Vertex vertex = new Vertex(data);
+        Vertex vertex = new Vertex(data,this.nodes);
         for(int i = 0; i < edges.size(); i++){
             vertex.edges.add(new Edge (vertex, edges.get(i).getTo()));
         }
@@ -86,8 +128,7 @@ public class Vertex {
         return generalizations;
     }
 
-    public String getGeneralization()
-    {
+    public String getGeneralization() {
         String toReturn = "";
         String[] arr = data.split(",");
         for(int i = 0; i < arr.length; i++){
