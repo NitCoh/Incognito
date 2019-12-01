@@ -41,7 +41,6 @@ public class Incognito {
         List<Vertex> ans = new ArrayList<>();
         Set<String> forbidden = new HashSet<>();
         for(int i=1;i<=sizeQI;++i){
-            System.out.println(i);
             activeGraph = new Combinations(this.indexNodes,i,forbidden);
 //            forbidden = new HashSet<>();
             List<Vertex> roots = activeGraph.getGraph().startBFS();
@@ -68,7 +67,7 @@ public class Incognito {
         }
         List<Vertex> lastRound = activeGraph.getGraph().getVertices();
         for(Vertex v : lastRound){
-            if(v.isSatisfies()){
+            if(v.isSatisfies() || (!v.isSatisfies() && !v.isMarked())){
                 ans.add(v);
             }
         }
