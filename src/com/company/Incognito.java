@@ -25,13 +25,20 @@ public class Incognito {
         }
         this.k=k;
         this.records = readRecordsFromCSV(filename,numOfAttsExpected);
-//        QI = new String[]{"S0", "S1", "Z0", "Z1", "Z2", "B0", "B1"};
         filterByIndex(this.records,idx);
         int i=0;
         for(Record rec: this.records){
             System.out.println(i+ " Age: "+rec.getRecs().get(0)+" Overall: "+rec.getRecs().get(1)+" Foot: "+rec.getRecs().get(2));
             ++i;
         }
+    }
+
+    private static HashMap<String,List<String>> graphStringify(Graph g){
+        HashMap<String,List<String>> verToNei = new HashMap<>();
+        for(Vertex v: g.getVertices()) {
+            verToNei.put(v.toString(), v.neighToString());
+        }
+        return verToNei;
     }
 
 
@@ -42,7 +49,7 @@ public class Incognito {
         Set<String> forbidden = new HashSet<>();
         for(int i=1;i<=sizeQI;++i){
             activeGraph = new Combinations(this.indexNodes,i,forbidden);
-//            forbidden = new HashSet<>();
+            Utils.createGraphPNG(graphStringify(activeGraph.getGraph()),i); //Drawing the graph before the BFS scan.
             List<Vertex> roots = activeGraph.getGraph().startBFS();
             roots.sort(Comparator.comparingInt(Vertex::getHeight));
             Queue<Vertex> q = new LinkedList(roots);

@@ -1,24 +1,47 @@
 package com.company;
 
+import guru.nidi.graphviz.attribute.Color;
+import guru.nidi.graphviz.attribute.Rank;
+import guru.nidi.graphviz.attribute.RankDir;
+import guru.nidi.graphviz.attribute.Style;
+import guru.nidi.graphviz.engine.Format;
+import guru.nidi.graphviz.engine.Graphviz;
+import guru.nidi.graphviz.model.*;
+import guru.nidi.graphviz.model.Graph;
+
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import static guru.nidi.graphviz.attribute.RankDir.LEFT_TO_RIGHT;
+import static guru.nidi.graphviz.model.Factory.*;
+
 public class Main {
 
     public static void main(String[] args) {
+        //Giving the indexes of the QIs in the csv file.
         List<Integer> setOfQI = new ArrayList<>();
         setOfQI.add(3);
         setOfQI.add(7);
         setOfQI.add(14);
-        List<Represantation> gens = buildRepres();
-        Incognito inc = new Incognito("minidata.csv", setOfQI,90,2,gens,3,buildDummyHash(gens));
-        for(Vertex v : inc.mainAlgorithm())
+        List<Represantation> gens = buildRepres(); // Build the generalization functions
+        int qiSize = 3;
+        int k=10;
+        int numOfAttsExpected = 90; //Expected for each record in the db to have X features in order to avoid "bad" records".
+        Incognito inc = new Incognito("data.csv", setOfQI,numOfAttsExpected,k,gens,qiSize,buildDummyHash(gens));
+        HashMap<String,List<String>> verToNei = new HashMap<>();
+        for(Vertex v : inc.mainAlgorithm()) {
             System.out.println(v.toString());
-
+            verToNei.put(v.toString(),v.neighToString());
+        }
+            Utils.createGraphPNG(verToNei,qiSize+1);
     }
+
+
 
     private static HashMap<String,String> buildDummyHash(List<Represantation> gens){
         HashMap<String,String> dummyHash = new HashMap<>();

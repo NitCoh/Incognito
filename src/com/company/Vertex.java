@@ -19,6 +19,14 @@ public class Vertex {
         return nodes;
     }
 
+    public List<String> neighToString(){
+        List<Vertex> neigh = this.getDirectNeighbours();
+        List<String> neighToStr = new ArrayList<>();
+        for(Vertex v: neigh){
+            neighToStr.add(v.toString());
+        }
+        return neighToStr;
+    }
 
     public void markAndSatisfyNeighbours(){
         for(Edge e: this.edges){
