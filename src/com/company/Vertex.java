@@ -30,15 +30,15 @@ public class Vertex {
 
     public void markAndSatisfyNeighbours(){
         for(Edge e: this.edges){
-            e.to.setMarked(true);
-            e.to.setSatisfies(true);
+            e.getTo().setMarked(true);
+            e.getTo().setSatisfies(true);
         }
     }
 
     public List<Vertex> getDirectNeighbours(){
         List<Vertex> neigh = new ArrayList<>();
         for(Edge e: this.edges){
-            neigh.add(e.to);
+            neigh.add(e.getTo());
         }
         return neigh;
     }
@@ -49,12 +49,6 @@ public class Vertex {
         }
     }
 
-
-    public void removeEdges(Edge edge){
-        if(edges.contains(edge)){
-            edges.remove(edge);
-        }
-    }
 
     public boolean isMarked() {
         return marked;
@@ -69,13 +63,6 @@ public class Vertex {
         return data;
     }
 
-    public int getNumOfEdges(){
-        return edges.size();
-    }
-
-    public ArrayList<Edge> getEdges(){
-        return edges;
-    }
 
     public boolean isSatisfies(){
         return satisfies;
@@ -85,34 +72,11 @@ public class Vertex {
         satisfies = val;
     }
 
-    public boolean isRoot(){
-        return edges.isEmpty();
-    }
 
-
-    public static String[] getNames(Represantation[] arr){
-        String[] ans = new String[arr.length];
-        for(int i=0;i<arr.length;++i){
-            ans[i] = arr[i].getName();
-        }
-        return ans;
-    }
 
     public boolean equals(Object vertex){
         Vertex v = (Vertex) vertex;
         return data.hashCode() == v.data.hashCode();
-    }
-
-    public Vertex copy(){
-        Vertex vertex = new Vertex(data,this.nodes);
-        for(int i = 0; i < edges.size(); i++){
-            vertex.edges.add(new Edge (vertex, edges.get(i).getTo()));
-        }
-        return vertex;
-    }
-
-    public Vertex getAdjacentVertex(Edge edge){
-        return edge.getAdjacentVertex(this);
     }
 
 
@@ -125,16 +89,6 @@ public class Vertex {
         return height;
     }
 
-    public ArrayList<Vertex> getDirectGeneralizations(ArrayList<Vertex> generalizations){
-        for(int i = 0; i < edges.size(); i++){
-            Vertex v = edges.get(i).getTo();
-            if(generalizations.contains(v) == false)
-            {
-                generalizations.add(edges.get(i).getTo());
-            }
-        }
-        return generalizations;
-    }
 
     public String getGeneralization() {
         String toReturn = "";

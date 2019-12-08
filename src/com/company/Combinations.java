@@ -20,9 +20,6 @@ public class Combinations {
         return this.graph;
     }
     private Set<String> createInnerForbidden(Represantation[] arr){
-//        for(Represantation r: arr){
-//            if()
-//        }
         return new HashSet<>();
     }
 
@@ -55,21 +52,10 @@ public class Combinations {
             if(!checker)
                 return true;
         }
-//
-//        for(Represantation r: data){
-//            if(r != null && forbidden.contains(r.toString()))
-//                return true;
-//        }
         return false;
     }
 
     private boolean checkSameTypes(Represantation[] arr){
-//        String ans = "";
-//        for(Represantation r : arr){
-//            if(r !=null)
-//                ans+=r.toString();
-//        }
-//        System.out.println(ans);
         for(Represantation r: arr){
             if(r !=null) {
                 for (Represantation x : arr) {
@@ -108,33 +94,6 @@ public class Combinations {
         }
     }
 
-    public void combinationUtil2(Represantation arr[], int n, int r, int index,
-                                 Represantation data[], int i, Set<String> forbidden)
-    {
-        if(checkSameTypes(data))
-            return;
-        if(this.contains(forbidden,data))
-            return;
-        // Current combination is ready to be printed, print it
-        if (index == r)
-        {
-            makeNode(deepCopy(data));
-            return;
-        }
-
-        // When no more elements are there to put in data[]
-        if (i >= n)
-            return;
-
-        // current is included, put next at next location
-        data[index] = arr[i];
-        combinationUtil2(arr, n, r, index+1, data, i+1,forbidden);
-
-        // current is excluded, replace it with next (Note that
-        // i+1 is passed, but index is not changed)
-        combinationUtil2(arr, n, r, index, data, i+1,forbidden);
-    }
-
     private void makeNode(Represantation[] data) {
         Arrays.sort(data); // Sort by type.
         String nodeData="";
@@ -152,7 +111,6 @@ public class Combinations {
         Represantation data[] = new Represantation[r];
 
         combinationUtil(arr, data, 0, n - 1, 0, r,forbidden);
-//        combinationUtil2(arr,n,r,0,data,0,forbidden);
     }
 
 

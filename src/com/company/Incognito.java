@@ -72,6 +72,7 @@ public class Incognito {
             }
 
         }
+
         List<Vertex> lastRound = activeGraph.getGraph().getVertices();
         for(Vertex v : lastRound){
             if(v.isSatisfies() || (!v.isSatisfies() && !v.isMarked())){
@@ -79,12 +80,6 @@ public class Incognito {
             }
         }
         return ans;
-    }
-
-    public Set<String> modBFS(){
-
-
-        return null;
     }
 
 
@@ -115,10 +110,8 @@ public class Incognito {
         }
         padGeneralizationWithNullMaps(arrFuncs);
         FreqSet freqSet = new FreqSet();
-        int i=0;
         for(Record rec: this.records){
             Record genRec = new Record(applyGeneralization(listToArr(rec.getRecs()),arrFuncs));
-//            System.out.println((i++)+ " Age: "+genRec.getRecs().get(0)+" Overall: "+genRec.getRecs().get(1)+" Foot: "+genRec.getRecs().get(2));
             freqSet.put(genRec);
         }
         return freqSet.getMinVal();

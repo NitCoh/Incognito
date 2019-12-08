@@ -2,20 +2,20 @@ package com.company;
 
 public class Edge {
 
-    Vertex to;
-    Vertex from;
+    private Vertex to;
+    private Vertex from;
 
     public Edge(Vertex from, Vertex to){
         this.from = from;
         this.to = to;
     }
 
-    public Vertex getAdjacentVertex(Vertex current){
-        if(to.equals(current))
-            return from;
-        if(from.equals(current))
-            return to;
-        return null;
+    public Vertex getFrom() {
+        return from;
+    }
+
+    public Vertex getTo() {
+        return to;
     }
 
     public boolean equals(Object edge){
@@ -26,17 +26,7 @@ public class Edge {
         return to.equals(e.to) && from.equals(e.from);
     }
 
-    public Edge copy(){
-        return new Edge(from.copy(), to.copy());
-    }
 
-    public Vertex getTo(){
-        return to;
-    }
-
-    public Vertex getFrom(){
-        return from;
-    }
 
     public String toString(){
         return from.toString() + " -> " + to.toString();
